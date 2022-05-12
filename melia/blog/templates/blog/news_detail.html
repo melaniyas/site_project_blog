@@ -1,0 +1,35 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+  {{ title }}
+{% endblock %}
+
+{% block content %}
+<div class="alert alert-light">
+  <h1>{{ object.title }}</h1>
+  <p>{{ object.text|safe }}</p>
+  <div class="row">
+    <div>
+      <img src="{{ object.autor.profile.img.url }}" alt="{{ object.autor }}" class="user_images">
+    </div>
+    <div class="mt-2">
+      <span class="text-muted">Публикация: {{ object.date|date:"j E Y в H:i" }}</span>
+      <p><b>Автор:</b> <a href="{% url 'user_news' object.autor %}">{{ object.autor }}</a></p>
+    </div>
+  </div>
+  {% if object.autor == user %}
+  <hr>
+  <a href="{% url 'news_update' object.id%}" class="btn btn-info">Обновить статью</a>
+  <a href="{% url 'news_delete' object.id%}" class="btn btn-danger">Удалить статью</a>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block aside_block %}
+<h4 class="mt-2">Интервью со мной</h4>
+<img src="https://img.povar.ru/main/99/92/fd/6b/kartofel_fri_s_yaichnim_belkom_v_duhovke-685639.jpg" class="img-thumbnail">
+<p>Вы бы знали как я люблю картошку...</p>
+<a href="https://povar.ru/recipes/kartofel_fri_s_yaichnym_belkom_v_duhovke-83740.html" target="_blank">
+  <button class="btn btn-warning">Читать</button>
+</a>
+{% endblock %}

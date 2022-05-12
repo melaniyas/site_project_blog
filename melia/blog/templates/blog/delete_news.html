@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+  Удаление статьи
+{% endblock %}
+
+{% block content %}
+ <h1>Вы уверены, что хотите удалить статью "{{ object.title }}"?</h1>
+ <form method="post", class='form-register auth'>
+   {% csrf_token %}
+   <button type="submit" class="btn btn-outline-danger">Да, удалить</button>
+   <a href="{% url 'news_detail' object.id %}">Нет</a>
+ </form>
+{% endblock %}
+
+{% block aside_block %}
+<h4 class="mt-2">Картофельная любовь</h4>
+<img src="https://rastenievod.com/wp-content/uploads/2018/05/1-10.jpg" class="img-thumbnail">
+<p>Она любила картошку больше жизни...</p>
+<a href="https://povar.ru/list/kartofel/" target="_blank">
+  <button class="btn btn-warning">Читать</button>
+</a>
+{% endblock %}
